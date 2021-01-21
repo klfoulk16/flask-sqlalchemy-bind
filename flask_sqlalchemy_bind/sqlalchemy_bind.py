@@ -3,7 +3,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from flask import _app_ctx_stack
 
-class SQLAlchemy_bind:
+class SQLAlchemy:
     def __init__(self, app=None):
         """Initialize aspects of self to None as it should
          be called initialized outside of app context."""
