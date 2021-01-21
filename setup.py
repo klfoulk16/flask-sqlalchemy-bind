@@ -23,7 +23,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.9",
     ],
-    packages=setuptools.find_packages(),
+    packages=["flask_sqlalchemy_bind"],
     include_package_data=True,
     install_requires=["SQLAlchemy", "Flask"],
 )
