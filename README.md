@@ -1,6 +1,6 @@
 # Flask SQLAlchemy Bind
 
-Minimalistic extension to add support for SQLAlchemy to your Flask app. Adds most essential functionality - the database table construction is still be figured out.
+Minimalistic extension to add support for the SQLAlchemy ORM to your Flask app. Adds most essential functionality - the database table construction is still be figured out.
 
 ## Set Up:
 Install using pip:
@@ -12,11 +12,11 @@ pip install flask-sqlalchemy-bind
 A simple Flask app setup using Flask-SQLAlchemy-Bind:
 ```python
     from flask import Flask
-    from flask_sqlalchemy_bind import SQLAlchemy
+    from flask_sqlalchemy_bind import SQLAlchemy_bind
 
     app = Flask(__name__)
     app.config["DATABASE"] = "sqlite:///:memory:"
-    db = SQLAlchemy(app)
+    db = SQLAlchemy_bind(app)
 
     from sqlalchemy import Column, Integer, String
     class User(db.Base):
@@ -40,10 +40,10 @@ You can also use Flask-SQLAlchemy bind with an app factory.
 
 ```python
     from flask import Flask
-    from flask_sqlalchemy_bind import SQLAlchemy
+    from flask_sqlalchemy_bind import SQLAlchemy_bind
 
     # outside of app factory
-    db = SQLAlchemy(app)
+    db = SQLAlchemy_bind(app)
 
     from sqlalchemy import Column, Integer, String
     class User(db.Base):
