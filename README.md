@@ -8,9 +8,9 @@ Install using pip:
 pip install flask-sqlalchemy-bind
 ```
 
-## A Simple Flask App
-
-A simple Flask app steup using Flask-SQLAlchemy-Bind:
+## Setting up You Flask App
+### A Simple Flask App
+A simple Flask app setup using Flask-SQLAlchemy-Bind:
 ```python
     from flask import Flask
     from flask_sqlalchemy_bind import SQLAlchemy
@@ -34,6 +34,35 @@ A simple Flask app steup using Flask-SQLAlchemy-Bind:
     db.session.commit()
 
     users = User.query.all()
+```
+
+### Using an App Factory
+You can also use Flask-SQLAlchemy bind with an app factory.
+
+```python
+    from flask import Flask
+    from flask_sqlalchemy_bind import SQLAlchemy
+
+    #outside of app factory
+    db = SQLAlchemy(app)
+
+    from sqlalchemy import Column, Integer, String
+    class User(db.Base):
+        __tablename__ = 'users'
+        id = Column(Integer, primary_key=True)
+        username = Column(String, unique=True)
+        password = Column(String, unique=True)
+
+        def __init__(self, username=None, password=None):
+            self.username = username
+            self.password = password
+
+
+    def create_app():
+        app = Flask(__name__)
+        app.config["DATABASE"] = "sqlite:///:memory:"
+        db.init_app(app)
+        return app
 ```
 
 ## Adding a Click Command to Reset the Database
