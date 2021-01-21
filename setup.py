@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 # This call to setup() does all the work
 setuptools.setup(
     name="flask-sqlalchemy-bind",
-    version="0.0.1",
+    version="0.0.4",
     description="Minimalistic extension to add support for SQLAlchemy to your Flask app.",
     long_description=README,
     long_description_content_type="text/markdown",
@@ -25,5 +25,5 @@ setuptools.setup(
     ],
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=["sqlalchemy", "flask"],
+    install_requires=["SQLAlchemy", "Flask"],
 )

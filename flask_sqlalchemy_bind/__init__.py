@@ -1,10 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-import flask
+from flask import _app_ctx_stack
 
 # Version of the flask-sqlalchemy-bind package
-__version__ = "0.0.2"
+__version__ = "0.0.4"
 
 class SQLAlchemy_bind:
     def __init__(self, app=None):
@@ -32,7 +32,7 @@ class SQLAlchemy_bind:
         when the web application first starts, ensuring that 
         this object is accessible by the rest of the 
         application."""
-        return scoped_session(self.sessionmaker, scopefunc=flask._app_ctx_stack.__ident_func__)
+        return scoped_session(self.sessionmaker, scopefunc=_app_ctx_stack.__ident_func__)
 
     def init_db(self):
         """Creates all tables in connected database (or
