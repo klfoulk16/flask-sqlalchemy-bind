@@ -6,7 +6,7 @@ import flask
 # Version of the flask-sqlalchemy-bind package
 __version__ = "0.0.1"
 
-class SQLAlchemy:
+class SQLAlchemy_bind:
     def __init__(self, app=None):
         """Initialize aspects of self to None as it should
          be called initialized outside of app context."""
