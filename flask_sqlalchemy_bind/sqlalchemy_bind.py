@@ -7,6 +7,9 @@ class SQLAlchemy_bind:
     def __init__(self, app=None):
         """Initialize aspects of self to None as it should
          be called initialized outside of app context."""
+         # declare this here so that we can set up modules and import them
+         # before setting up rest of class
+        self.Base = declarative_base()
         self.app = app
         if app:
             self.init_app(app)
@@ -59,7 +62,6 @@ class SQLAlchemy_bind:
         if app:
             self.app = app
             try:
-                self.Base = declarative_base()
                 # connect database
                 self.engine = sqlalchemy.create_engine(self.app.config['DATABASE'])
                 # create session factory

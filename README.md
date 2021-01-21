@@ -8,7 +8,7 @@ Install using pip:
 pip install flask-sqlalchemy-bind
 ```
 
-## Setting up You Flask App
+## Setting up Your Flask App
 A simple Flask app setup using Flask-SQLAlchemy-Bind:
 ```python
     from flask import Flask
@@ -29,6 +29,9 @@ A simple Flask app setup using Flask-SQLAlchemy-Bind:
             self.username = username
             self.password = password
 
+    # set up database based off defined model
+    db.init_db()
+
     db.session.add(User(username="Hi", email="itsme@example.com"))
     db.session.commit()
 
@@ -43,8 +46,9 @@ You can also use Flask-SQLAlchemy bind with an app factory.
     from flask_sqlalchemy_bind import SQLAlchemy_bind
 
     # outside of app factory
-    db = SQLAlchemy_bind(app)
+    db = SQLAlchemy_bind()
 
+    # must be defined after db = SQLAlchemy_bind() if in same module
     from sqlalchemy import Column, Integer, String
     class User(db.Base):
         __tablename__ = 'users'
@@ -60,6 +64,9 @@ You can also use Flask-SQLAlchemy bind with an app factory.
     def create_app():
         app = Flask(__name__)
         app.config["DATABASE"] = "sqlite:///:memory:"
+        # import your database tables if defined in a different module
+        # for example if the User model above was in a different module:
+        from your_application.database import User
         db.init_app(app)
         return app
 ```
