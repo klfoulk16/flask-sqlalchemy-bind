@@ -42,7 +42,7 @@ You can also use Flask-SQLAlchemy bind with an app factory.
     from flask import Flask
     from flask_sqlalchemy_bind import SQLAlchemy
 
-    #outside of app factory
+    # outside of app factory
     db = SQLAlchemy(app)
 
     from sqlalchemy import Column, Integer, String
