@@ -9,7 +9,6 @@ pip install flask-sqlalchemy-bind
 ```
 
 ## Setting up You Flask App
-### A Simple Flask App
 A simple Flask app setup using Flask-SQLAlchemy-Bind:
 ```python
     from flask import Flask
