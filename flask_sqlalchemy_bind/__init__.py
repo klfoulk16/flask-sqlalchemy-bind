@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import flask
 
 # Version of the flask-sqlalchemy-bind package
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 
 class SQLAlchemy_bind:
     def __init__(self, app=None):
