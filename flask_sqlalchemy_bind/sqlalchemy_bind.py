@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from flask import _app_ctx_stack
@@ -61,7 +61,7 @@ class SQLAlchemy_bind:
             try:
                 self.Base = declarative_base()
                 # connect database
-                self.engine = create_engine(self.app.config['DATABASE'])
+                self.engine = sqlalchemy.create_engine(self.app.config['DATABASE'])
                 # create session factory
                 self.sessionmaker = self.init_session_maker()
                 # access scoped session registery (implicitely)

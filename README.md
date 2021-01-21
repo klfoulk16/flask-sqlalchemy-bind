@@ -56,7 +56,7 @@ You can also use Flask-SQLAlchemy bind with an app factory.
             self.username = username
             self.password = password
 
-
+    # app factory
     def create_app():
         app = Flask(__name__)
         app.config["DATABASE"] = "sqlite:///:memory:"
