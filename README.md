@@ -64,7 +64,7 @@ You can also use Flask-SQLAlchemy bind with an app factory.
         return app
 ```
 
-## Adding a Click Command to Reset the Database
+## Adding a CLI Command to Reset the Database
 
 If you'd like to add a command line tool to reset the database add the following code to the your application:
 
