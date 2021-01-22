@@ -16,8 +16,9 @@ A simple Flask app setup using Flask-SQLAlchemy-Bind:
 
     app = Flask(__name__)
     app.config["DATABASE"] = "sqlite:///:memory:"
-    db = SQLAlchemy_bind(app)
+    db = SQLAlchemy_bind()
 
+    # define your database tables
     from sqlalchemy import Column, Integer, String
     class User(db.Base):
         __tablename__ = 'users'
@@ -29,8 +30,9 @@ A simple Flask app setup using Flask-SQLAlchemy-Bind:
             self.username = username
             self.password = password
 
-    # set up database based off defined model
-    db.init_db()
+    # set up SQLAlchemy for your app
+    # you must import or define your database tables before running this
+    db.init_app(app)
 
     db.session.add(User(username="Hi", email="itsme@example.com"))
     db.session.commit()
