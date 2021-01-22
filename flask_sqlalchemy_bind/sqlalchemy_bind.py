@@ -5,7 +5,7 @@ from flask import _app_ctx_stack
 
 class SQLAlchemy_bind:
     def __init__(self):
-        """Create instance of SQLAlchemy connector with the declarative extension"""
+        """Create instance of SQLAlchemy_bind with the declarative extension"""
         self.Base = declarative_base()
 
     def init_session_maker(self):
