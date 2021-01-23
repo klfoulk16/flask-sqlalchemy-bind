@@ -9,39 +9,12 @@ pip install flask-sqlalchemy-bind
 ```
 
 ## Setting up Your Flask App
-A simple Flask app setup using Flask-SQLAlchemy-Bind:
-```python
-    from flask import Flask
-    from flask_sqlalchemy_bind import SQLAlchemy_bind
 
-    app = Flask(__name__)
-    app.config["DATABASE"] = "sqlite:///:memory:"
-    db = SQLAlchemy_bind()
-
-    # define your database tables
-    from sqlalchemy import Column, Integer, String
-    class User(db.Base):
-        __tablename__ = 'users'
-        id = Column(Integer, primary_key=True)
-        username = Column(String, unique=True)
-        password = Column(String, unique=True)
-
-        def __init__(self, username=None, password=None):
-            self.username = username
-            self.password = password
-
-    # set up SQLAlchemy for your app
-    # you must import or define your database tables before running this
-    db.init_app(app)
-
-    db.session.add(User(username="Hi", email="itsme@example.com"))
-    db.session.commit()
-
-    users = User.query.all()
-```
+Here's [an example](https://github.com/klfoulk16/demo-flask-sqlalchemy-bind) of a full-fledged (but small) Flask app that uses Flask-SQLAlchemy-Bind. Please poke around.
 
 ### Using an App Factory
-You can also use Flask-SQLAlchemy bind with an app factory.
+
+I recommend using Flask-SQLAlchemy-Bind with an app factory like so:
 
 ```python
     from flask import Flask
@@ -71,6 +44,40 @@ You can also use Flask-SQLAlchemy bind with an app factory.
         from your_application.database import User
         db.init_app(app)
         return app
+```
+
+### Without an App Factory
+
+The following is an example of a Flask app that does not use the app factory pattern:
+
+```python
+    from flask import Flask
+    from flask_sqlalchemy_bind import SQLAlchemy_bind
+
+    app = Flask(__name__)
+    app.config["DATABASE"] = "sqlite:///:memory:"
+    db = SQLAlchemy_bind()
+
+    # define your database tables
+    from sqlalchemy import Column, Integer, String
+    class User(db.Base):
+        __tablename__ = 'users'
+        id = Column(Integer, primary_key=True)
+        username = Column(String, unique=True)
+        password = Column(String, unique=True)
+
+        def __init__(self, username=None, password=None):
+            self.username = username
+            self.password = password
+
+    # set up SQLAlchemy for your app
+    # you must import or define your database tables before running this
+    db.init_app(app)
+
+    db.session.add(User(username="Hi", email="itsme@example.com"))
+    db.session.commit()
+
+    users = User.query.all()
 ```
 
 ## Adding a CLI Command to Reset the Database
