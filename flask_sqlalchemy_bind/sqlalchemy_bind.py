@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from flask import _app_ctx_stack
+import logging
 
 class SQLAlchemy_bind:
     def __init__(self):
@@ -52,12 +53,6 @@ class SQLAlchemy_bind:
                 # the session objects to each request
                 app.teardown_request(self.end_session)
             except Exception:
-                print("Error connecting database.")
-                print("Please set app.config['DATABASE'] to your database connection string")
+                logging.error("Error connecting database.\nPlease set app.config['DATABASE'] to your database connection string")
         else:
-            print("SQLAlchemy was not set up properly."
-            print("Usage:")
-            print("Outside app factory")
-            print(">> db = SQLAlchemy()")
-            print("Inside app factory")
-            print(">> db.init_app(your_flask_app)")
+            logging.error("SQLAlchemy was not set up properly.\nUsage:\nOutside app factory\n>> db = SQLAlchemy()\nInside app factory\n>> db.init_app(your_flask_app)")
